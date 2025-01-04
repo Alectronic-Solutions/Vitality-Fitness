@@ -45,6 +45,28 @@ nav {
   transform: perspective(100px) rotateX(10deg);
 }
 
+/* Hamburger Menu */
+.hamburger {
+  display: none; /* Hidden by default */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
@@ -536,6 +558,7 @@ footer {
 
 .contact-form {
   display: flex;
+  text-align: center;
   flex-direction: column;
 }
 
@@ -579,6 +602,30 @@ footer {
   box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
 }
 
+/* Contact Info Section */
+.contact-info {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contact-info p {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.contact-info i {
+  color: #00bcd4;
+  font-size: 1rem;
+  width: 20px;
+  text-align: center;
+}
+
 .social-icons {
   display: flex;
   gap: 1rem;
@@ -599,6 +646,7 @@ footer {
 
 .quick-links {
   list-style: none;
+  text-align: center;
   padding: 0;
   margin: 0;
 }
@@ -674,6 +722,34 @@ footer {
 
 /* Mobile Layout */
 @media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* Show hamburger menu on mobile */
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hide off-screen by default */
+    height: 100vh;
+    width: 70%; /* Width of the mobile menu */
+    background: rgba(10, 10, 26, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    right: 0; /* Slide in when active */
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+  }
+  
   .footer-content {
     flex-direction: column;
     align-items: center;
@@ -846,7 +922,7 @@ footer {
 }
 
 #order-form-modal .form-group textarea {
-  min-height: 80px;
+  min-height: 80px; /* Smaller height for textarea */
 }
 
 #order-form-modal .quantity-selector {
@@ -861,14 +937,14 @@ footer {
   color: #fff;
   border: none;
   border-radius: 50%;
-  width: 30px;
-  height: 40px;
+  width: 30px; /* Smaller buttons */
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 #order-form-modal .quantity-btn:hover {
@@ -877,14 +953,14 @@ footer {
 }
 
 #order-form-modal .quantity-selector input {
-  width: 50px;
+  width: 50px; /* Smaller input for quantity */
   text-align: center;
   padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
-  font-size: .9rem;
+  font-size: 0.9rem; /* Smaller font size */
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 

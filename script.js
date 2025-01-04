@@ -191,3 +191,26 @@ if (videos.length > 0) { // Only run if videos exist on the page
   // Rotate videos every 7 seconds
   setInterval(rotateVideos, 7000);
 }
+
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+}
+
+// Close mobile menu when a link is clicked
+const navLinksList = document.querySelectorAll('.nav-links a');
+
+if (navLinksList.length > 0) {
+  navLinksList.forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      hamburger.classList.remove('active');
+    });
+  });
+}
