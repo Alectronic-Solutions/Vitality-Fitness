@@ -6,6 +6,54 @@ body {
   box-sizing: border-box;
   color: #fff;
   background: linear-gradient(to bottom, #0a0a1a, #1a1a2e, #0a0a1a);
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: #000; /* Black background */
+  color: #fff; /* White text */
+}
+
+body.dark-mode nav {
+  background: rgba(0, 0, 0, 0.9); /* Darker navigation bar */
+}
+
+body.dark-mode .card,
+body.dark-mode .product-card,
+body.dark-mode .post,
+body.dark-mode .review-card {
+  background: rgba(255, 255, 255, 0.1); /* Darker cards */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border */
+}
+
+body.dark-mode .modal-content {
+  background: linear-gradient(145deg, #0a0a1a, #000); /* Darker modal background */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border */
+}
+
+body.dark-mode .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border */
+}
+
+body.dark-mode .contact-form input,
+body.dark-mode .contact-form textarea {
+  background: rgba(255, 255, 255, 0.1); /* Darker input fields */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border */
+  color: #fff; /* White text */
+}
+
+body.dark-mode .contact-form input::placeholder,
+body.dark-mode .contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Lighter placeholder text */
+}
+
+body.dark-mode .cta-button,
+body.dark-mode .learn-more-btn,
+body.dark-mode .add-to-cart-btn,
+body.dark-mode .read-more-btn {
+  background: linear-gradient(to right, #0077b6, #00bcd4); /* Adjust button colors */
+  color: #fff; /* White text */
 }
 
 /* Navigation Bar */
@@ -1082,4 +1130,69 @@ footer {
   margin-left: 1rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   transform: perspective(100px) rotateX(10deg);
+}
+
+/* Back to Top Button */
+#back-to-top {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(to right, #00bcd4, #0077b6);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 188, 212, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  z-index: 1000;
+}
+
+#back-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+  background: linear-gradient(to right, #0077b6, #00bcd4);
+}
+
+#back-to-top i {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(to right, #000000, #000000);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  z-index: 1000;
+}
+
+#dark-mode-toggle:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+  background: linear-gradient(to right, #0077b6, #00bcd4);
 }

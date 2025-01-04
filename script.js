@@ -214,3 +214,54 @@ if (navLinksList.length > 0) {
     });
   });
 }
+
+// Back to Top Button
+const backToTopButton = document.getElementById('back-to-top');
+
+if (backToTopButton) {
+  // Show or hide the button based on scroll position
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.style.display = 'block';
+    } else {
+      backToTopButton.style.display = 'none';
+    }
+  });
+
+  // Scroll to top when the button is clicked
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+// Dark Mode Toggle
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const body = document.body;
+
+if (darkModeToggle) {
+  // Check for saved dark mode preference in localStorage
+  const isDarkMode = localStorage.getItem('darkMode') === 'enabled';
+
+  // Apply dark mode if previously enabled
+  if (isDarkMode) {
+    body.classList.add('dark-mode');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+  }
+
+  // Toggle dark mode on button click
+  darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-mode');
+
+    // Save dark mode preference to localStorage
+    if (body.classList.contains('dark-mode')) {
+      localStorage.setItem('darkMode', 'enabled');
+      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'; // Moon icon for dark mode
+    } else {
+      localStorage.setItem('darkMode', 'disabled');
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'; // Sun icon for light mode
+    }
+  });
+}
