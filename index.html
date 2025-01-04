@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitality Fitness</title>  
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="logo">
+      <img src="images/logo.png" alt="Vitality Fitness Logo" class="logo-image">
+      <h1 class="logo-title">Vitality Fitness</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="video-container">
+      <video autoplay muted loop class="hero-video active" src="videos/gym-hero1.mp4"></video>
+      <video autoplay muted loop class="hero-video" src="videos/gym-hero2.mp4"></video>
+      <video autoplay muted loop class="hero-video" src="videos/gym-hero3.mp4"></video>
+    </div>
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <div class="content-box">
+        <h1>Welcome to Vitality Fitness</h1>
+        <p>Your journey to a healthier lifestyle starts here.</p>
+        <a href="#services" class="cta-button">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" class="about">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>
+        At Vitality Fitness Center, we are committed to providing a holistic approach to fitness. Our center is equipped with top-of-the-line equipment and experienced trainers to guide you on your fitness journey. We offer personalized training programs, nutrition guidance, and a supportive community to help you stay motivated and reach your goals.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services">
+    <h2>Our Services</h2>
+    <div class="service-cards">
+      <div class="card">
+        <i class="fas fa-dumbbell"></i>
+        <h3>Personal Training</h3>
+        <p>
+          Achieve your fitness goals with one-on-one sessions tailored to your needs. Our certified trainers will guide you every step of the way.
+        </p>
+        <button class="learn-more-btn" data-modal="personal-training-modal">Learn More</button>
+      </div>
+      <div class="card">
+        <i class="fas fa-heartbeat"></i>
+        <h3>Group Classes</h3>
+        <p>
+          Join our high-energy group fitness classes designed to keep you motivated and engaged. Perfect for all fitness levels.
+        </p>
+        <button class="learn-more-btn" data-modal="group-classes-modal">Learn More</button>
+      </div>
+      <div class="card">
+        <i class="fas fa-utensils"></i>
+        <h3>Nutrition Plans</h3>
+        <p>
+          Get personalized nutrition plans to complement your workouts and optimize your results. Fuel your body the right way.
+        </p>
+        <button class="learn-more-btn" data-modal="nutrition-plans-modal">Learn More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Shop Section -->
+  <section id="shop" class="shop">
+    <h2>Shop</h2>
+    <p>Explore our fitness gear and supplements to enhance your workouts.</p>
+    <div class="product-cards">
+      <div class="product-card">
+        <img src="images/protein-powder.jpg" alt="Protein Powder" class="product-image">
+        <h3>Protein Powder</h3>
+        <p>High-quality whey protein to support muscle recovery and growth.</p>
+        <p class="price">$29.99</p>
+        <button class="add-to-cart-btn" data-product="protein-powder">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/dumbbell-set.jpg" alt="Dumbbell Set" class="product-image">
+        <h3>Dumbbell Set</h3>
+        <p>Adjustable dumbbells for a versatile home workout experience.</p>
+        <p class="price">$49.99</p>
+        <button class="add-to-cart-btn" data-product="dumbbell-set">Add to Cart</button>
+      </div>
+      <div class="product-card">
+        <img src="images/yoga-mat.jpg" alt="Yoga Mat" class="product-image">
+        <h3>Yoga Mat</h3>
+        <p>Eco-friendly and non-slip yoga mat for all your fitness routines.</p>
+        <p class="price">$19.99</p>
+        <button class="add-to-cart-btn" data-product="yoga-mat">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="blog">
+    <h2>Latest Blog Posts</h2>
+    <div class="blog-posts">
+      <div class="post">
+        <img src="images/blog1.jpg" alt="Blog 1 Placeholder" class="blog-image">
+        <h3>Top 5 Exercises for Beginners</h3>
+        <p>Learn the best exercises to kickstart your fitness journey.</p>
+        <button class="read-more-btn" data-modal="blog1-modal">Read More</button>
+      </div>
+      <div class="post">
+        <img src="images/blog2.jpg" alt="Blog 2 Placeholder" class="blog-image">
+        <h3>Nutrition Tips for Muscle Gain</h3>
+        <p>Discover the right diet to fuel your workouts.</p>
+        <button class="read-more-btn" data-modal="blog2-modal">Read More</button>
+      </div>
+      <div class="post">
+        <img src="images/blog3.jpg" alt="Blog 3 Placeholder" class="blog-image">
+        <h3>How to Stay Motivated in Your Fitness Journey</h3>
+        <p>Tips and tricks to keep yourself motivated and consistent.</p>
+        <button class="read-more-btn" data-modal="blog3-modal">Read More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="reviews">
+    <h2>What Our Clients Say</h2>
+    <div class="reviews-container">
+      <div class="review-card active">
+        <h3>John Doe</h3>
+        <p class="client-role">Fitness Enthusiast</p>
+        <p class="client-review">
+          "Vitality Fitness has transformed my life! The trainers are knowledgeable, and the community is incredibly supportive. I've never felt better!"
+        </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+      <div class="review-card">
+        <h3>Jane Smith</h3>
+        <p class="client-role">Yoga Lover</p>
+        <p class="client-review">
+          "The group classes are amazing! I love the variety and the energy. Vitality Fitness has become my second home."
+        </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+      </div>
+      <div class="review-card">
+        <h3>Mike Johnson</h3>
+        <p class="client-role">Bodybuilder</p>
+        <p class="client-review">
+          "The nutrition plans are top-notch. Combined with the personal training, I've achieved results I never thought possible!"
+        </p>
+        <div class="rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="footer-content">
+      <!-- Contact Us Section -->
+      <div class="footer-section">
+        <h3>Contact Us</h3>
+        <form class="contact-form">
+          <input type="text" placeholder="Name" required>
+          <input type="email" placeholder="Email" required>
+          <textarea placeholder="Message" required></textarea>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Follow Us Section -->
+      <div class="footer-section">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links Section -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="quick-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <!-- Add the logo here -->
+      <div class="logo">
+        <img src="images/logo.png" alt="Vitality Fitness Logo" class="logo-image">
+        <h1 class="logo-title">Vitality Fitness</h1>
+      </div>
+
+      <div class="footer-links">
+        <a href="privacy-terms.html">Privacy Policy</a> | 
+        <a href="privacy-terms.html">Terms of Service</a>
+      </div>
+      <p>&copy; 2024 Vitality Fitness. All rights reserved.</p>
+      <p class="designed-by">Designed by <a href="https://alectronic-solutions.github.io/home/" target="_blank">Alectronic Solutions</a>.</p>
+    </div>
+  </footer>
+
+  <!-- Modals -->
+  <!-- Service Modals -->
+  <div id="personal-training-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Personal Training</h2>
+      <p>
+        Our <strong>Personal Training</strong> program is designed to help you achieve your fitness goals with a customized approach. Whether you're looking to lose weight, build muscle, or improve overall fitness, our certified trainers will create a plan tailored to your needs.
+      </p>
+      <ul>
+        <li><i class="fas fa-check"></i> One-on-one sessions with expert trainers</li>
+        <li><i class="fas fa-check"></i> Customized workout plans</li>
+        <li><i class="fas fa-check"></i> Progress tracking and adjustments</li>
+        <li><i class="fas fa-check"></i> Flexible scheduling</li>
+      </ul>
+      <button class="contact-btn">Contact Us</button>
+    </div>
+  </div>
+
+  <div id="group-classes-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Group Classes</h2>
+      <p>
+        Join our high-energy <strong>Group Classes</strong> and experience the motivation of working out with others. Our classes are designed for all fitness levels and include a variety of workouts to keep you engaged and challenged.
+      </p>
+      <ul>
+        <li><i class="fas fa-check"></i> Yoga, Pilates, and stretching</li>
+        <li><i class="fas fa-check"></i> High-intensity interval training (HIIT)</li>
+        <li><i class="fas fa-check"></i> Spin and cardio classes</li>
+        <li><i class="fas fa-check"></i> Fun and supportive community</li>
+      </ul>
+      <button class="contact-btn">Contact Us</button>
+    </div>
+  </div>
+
+  <div id="nutrition-plans-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Nutrition Plans</h2>
+      <p>
+        Our <strong>Nutrition Plans</strong> are designed to complement your fitness journey. Whether you're looking to lose weight, gain muscle, or maintain a healthy lifestyle, our nutrition experts will guide you with personalized meal plans and advice.
+      </p>
+      <ul>
+        <li><i class="fas fa-check"></i> Personalized meal plans</li>
+        <li><i class="fas fa-check"></i> Expert guidance on macronutrients</li>
+        <li><i class="fas fa-check"></i> Weekly check-ins and adjustments</li>
+        <li><i class="fas fa-check"></i> Recipes and grocery lists</li>
+      </ul>
+      <button class="contact-btn">Contact Us</button>
+    </div>
+  </div>
+
+  <!-- Blog Modals -->
+  <div id="blog1-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Top 5 Exercises for Beginners</h2>
+      <p>
+        Starting your fitness journey can be overwhelming, but these <strong>5 beginner-friendly exercises</strong> will help you build strength and confidence:
+      </p>
+      <ul>
+        <li><i class="fas fa-check"></i> Bodyweight Squats</li>
+        <li><i class="fas fa-check"></i> Push-Ups</li>
+        <li><i class="fas fa-check"></i> Planks</li>
+        <li><i class="fas fa-check"></i> Walking Lunges</li>
+        <li><i class="fas fa-check"></i> Dumbbell Rows</li>
+      </ul>
+      <button class="contact-btn">Contact Us</button>
+    </div>
+  </div>
+
+  <div id="blog2-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Nutrition Tips for Muscle Gain</h2>
+      <p>
+        Building muscle requires more than just lifting weights. Here are some <strong>nutrition tips</strong> to help you maximize your gains:
+      </p>
+      <ul>
+        <li><i class="fas fa-check"></i> Eat a calorie surplus</li>
+        <li><i class="fas fa-check"></i> Prioritize protein intake</li>
+        <li><i class="fas fa-check"></i> Include healthy fats</li>
+        <li><i class="fas fa-check"></i> Stay hydrated</li>
+        <li><i class="fas fa-check"></i> Time your meals around workouts</li>
+      </ul>
+      <button class="contact-btn">Contact Us</button>
+    </div>
+  </div>
+
+  <div id="blog3-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>How to Stay Motivated in Your Fitness Journey</h2>
+      <p>
+        Staying motivated can be challenging, but these <strong>tips</strong> will help you stay on track:
+      </p>
+      <ul>
+        <li><i class="fas fa-check"></i> Set realistic goals</li>
+        <li><i class="fas fa-check"></i> Track your progress</li>
+        <li><i class="fas fa-check"></i> Find a workout buddy</li>
+        <li><i class="fas fa-check"></i> Mix up your routine</li>
+        <li><i class="fas fa-check"></i> Reward yourself for milestones</li>
+      </ul>
+      <button class="contact-btn">Contact Us</button>
+    </div>
+  </div>
+
+  <!-- Order Form Modal -->
+  <div id="order-form-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Place Your Order</h2>
+      <form id="order-form">
+        <input type="hidden" id="product-id" name="product-id">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="quantity">Quantity:</label>
+          <div class="quantity-selector">
+            <button type="button" class="quantity-btn" data-action="decrease">-</button>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+            <button type="button" class="quantity-btn" data-action="increase">+</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Shipping Address:</label>
+          <textarea id="address" name="address" placeholder="Enter your shipping address" required></textarea>
+        </div>
+        <button type="submit" class="submit-order-btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
