@@ -3,24 +3,1150 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vitality Fitness</title>  
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Vitality Fitness | Elite Training & Wellness</title>
+  <meta name="description" content="Premium fitness coaching, gym equipment, and nutrition planning.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* --- CSS VARIABLES & RESET --- */
+    :root {
+      --primary: #00bcd4; /* Cyan */
+      --primary-dark: #008ba3;
+      --secondary: #00e5ff;
+      --accent: #ff4081;
+      
+      --bg-dark: #0b0d10; /* Deepest Charcoal */
+      --bg-card: rgba(22, 27, 34, 0.7); /* Semi-transparent for glassmorphism */
+      --bg-nav: rgba(11, 13, 16, 0.85);
+      
+      --text-main: #ffffff;
+      --text-muted: #a0a3a8;
+      
+      --gradient-main: linear-gradient(135deg, #00bcd4, #1de9b6);
+      
+      --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
+      --shadow-glow: 0 0 25px rgba(0, 188, 212, 0.25);
+      
+      --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Light Mode Variables - High Contrast & Premium */
+    body.light-mode {
+      --bg-dark: #f4f5f7; /* Very light grey, almost white */
+      --bg-card: #ffffff; /* Pure white cards */
+      --bg-nav: rgba(255, 255, 255, 0.95);
+      --text-main: #000000; /* Deep black for text */
+      --text-muted: #4a4a4a; /* Darker grey for readability */
+      --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.08); /* Soft, expensive shadow */
+      --shadow-glow: 0 5px 15px rgba(0, 188, 212, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.7;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: var(--transition);
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* --- SCROLL REVEAL ANIMATION --- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- NAVIGATION --- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-nav);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    body.light-mode nav {
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+
+    .logo i {
+      color: var(--primary);
+      font-size: 1.6rem;
+    }
+
+    .logo span {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      padding-bottom: 5px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--text-main);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gradient-main);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      color: var(--text-main);
+      background: none;
+      border: none;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      margin-top: -80px;
+      padding-top: 150px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(11, 13, 16, 0.4), var(--bg-dark));
+    }
+    
+    body.light-mode .hero-bg::after {
+       background: linear-gradient(to bottom, rgba(0,0,0,0.2), var(--bg-dark));
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2s ease;
+      position: absolute;
+      transform: scale(1.1);
+    }
+
+    .hero-image.active {
+      opacity: 1;
+      transform: scale(1);
+      transition: opacity 2s ease, transform 10s ease;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      color: #ffffff;
+    }
+    
+    body.light-mode .hero h1 {
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    .hero h1 span {
+      background: var(--gradient-main);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #e0e0e0;
+      margin-bottom: 3rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 3rem;
+      background: var(--gradient-main);
+      color: #000;
+      font-weight: 700;
+      border-radius: 50px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: var(--transition);
+      border: none;
+      cursor: pointer;
+      box-shadow: var(--shadow-glow);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1de9b6, #00bcd4);
+      z-index: -1;
+      transition: opacity 0.3s;
+      opacity: 0;
+    }
+
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 188, 212, 0.4);
+    }
+
+    /* --- TRUST BANNER --- */
+    .trust-banner {
+      padding: 2rem 5%;
+      background-color: rgba(0,0,0,0.2);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+    }
+    
+    body.light-mode .trust-banner {
+      background-color: #ffffff;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .trust-logos {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      opacity: 0.5;
+      align-items: center;
+    }
+
+    .trust-logos i {
+      font-size: 2rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    
+    .trust-logos i:hover {
+        color: var(--primary);
+        opacity: 1;
+    }
+
+    /* --- SECTIONS GENERAL --- */
+    section {
+      padding: 8rem 5%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+
+    .section-header span {
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-main);
+      margin: 1.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* --- ABOUT --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+
+    .about-image img {
+      width: 100%;
+      transition: transform 0.6s ease;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-text h3 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+    
+    .stat-number {
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 0.2rem;
+        line-height: 1;
+    }
+    
+    body.light-mode .stat-number {
+        color: #000;
+    }
+
+    /* --- SERVICES --- */
+    #services {
+      background-color: #0d0f12;
+      transition: background-color 0.4s ease;
+    }
+    
+    body.light-mode #services {
+      background-color: #ffffff;
+    }
+
+    #services h2,
+    #services h3 {
+      color: #ffffff;
+      transition: color 0.4s ease;
+    }
+    
+    body.light-mode #services h2,
+    body.light-mode #services h3 {
+      color: #000000;
+    }
+
+    #services p,
+    #services .service-card p {
+      color: #e0e0e0;
+      transition: color 0.4s ease;
+    }
+    
+    body.light-mode #services p,
+    body.light-mode #services .service-card p {
+      color: #4a4a4a; 
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      padding: 3.5rem 2.5rem;
+      border-radius: 20px;
+      text-align: center;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    body.light-mode .service-card {
+        border: 1px solid rgba(0,0,0,0.05);
+        background: #f8f9fa;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: var(--gradient-main);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    
+    body.light-mode .service-card::before {
+        background: #000; 
+    }
+
+    .service-card:hover {
+      transform: translateY(-15px);
+      box-shadow: var(--shadow-card);
+      border-color: rgba(255,255,255,0.1);
+    }
+    
+    body.light-mode .service-card:hover {
+        border-color: rgba(0,0,0,0.1);
+    }
+
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      font-size: 3.5rem;
+      color: #ffffff; 
+      margin-bottom: 2rem;
+      display: inline-block;
+      transition: color 0.4s ease;
+    }
+    
+    body.light-mode .service-icon {
+        color: #000000;
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* --- SHOP --- */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    body.light-mode .product-card {
+        border: 1px solid rgba(0,0,0,0.05);
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      height: 300px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .product-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .product-card:hover .product-img-wrapper img {
+      transform: scale(1.08);
+    }
+
+    .product-info {
+      padding: 2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .product-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    body.light-mode .product-price {
+        color: #000;
+    }
+
+    .btn-outline {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text-main);
+      text-align: center;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+      transition: var(--transition);
+      cursor: pointer;
+      background: transparent;
+    }
+    
+    body.light-mode .btn-outline {
+        border-color: #000;
+        color: #000;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: #000;
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+    }
+
+    /* --- REVIEWS --- */
+    .reviews {
+      background: radial-gradient(circle at center, rgba(0, 188, 212, 0.05) 0%, transparent 70%);
+    }
+
+    .reviews-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      min-height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-card {
+      position: absolute;
+      opacity: 0;
+      transform: scale(0.95) translateY(20px);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      pointer-events: none;
+      width: 100%;
+    }
+
+    .review-card.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: all;
+    }
+
+    .stars {
+      color: #ffd700;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      letter-spacing: 5px;
+    }
+
+    .review-text {
+      font-size: 1.6rem;
+      font-style: italic;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .reviewer img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      object-fit: cover;
+      padding: 3px;
+      background: transparent;
+    }
+    
+    body.light-mode .reviewer img {
+        border-color: #000;
+    }
+
+    .reviewer-info h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .reviewer-info span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* --- FAQ SECTION --- */
+    .faq {
+      background-color: var(--bg-card);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    body.light-mode .faq {
+        background-color: #f8f9fa;
+        border-top: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1rem;
+    }
+    
+    body.light-mode .faq-item {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 1.5rem 0;
+      color: var(--text-main);
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .faq-question i {
+      color: var(--primary);
+      transition: transform 0.3s;
+    }
+
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .faq-answer p {
+        padding-bottom: 1.5rem;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+      background: #050608;
+      padding: 6rem 5% 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 3rem;
+      max-width: 1300px;
+      margin: 0 auto 4rem;
+    }
+
+    .footer-col h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+    
+    .footer-brand p {
+        color: #a0a3a8;
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-links a, .footer-links li {
+      color: #f0f0f0; 
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(5px);
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icons a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .social-icons a:hover {
+      background: var(--primary);
+      color: #000;
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+      border-color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      color: #777; 
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .designed-by {
+      opacity: 0.7;
+    }
+    
+    .designed-by a {
+      transition: var(--transition);
+    }
+
+    /* Added specific hover effect for footer credit */
+    .designed-by a:hover {
+        color: var(--primary);
+        text-shadow: 0 0 10px var(--primary);
+        text-decoration: none;
+        opacity: 1;
+    }
+
+    /* --- MODALS --- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 1rem; 
+    }
+
+    .modal.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      padding: 3rem;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 550px;
+      position: relative;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: var(--shadow-card);
+      transform: translateY(30px);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      max-height: 90vh; 
+      overflow-y: auto; 
+      scrollbar-width: thin;
+      scrollbar-color: var(--primary) transparent;
+    }
+
+    .modal.show .modal-content {
+      transform: translateY(0);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: var(--transition);
+      z-index: 10;
+    }
+
+    .close-modal:hover {
+      color: var(--accent);
+      transform: rotate(90deg);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--text-main);
+      font-family: inherit;
+      transition: var(--transition);
+      font-size: 16px; 
+    }
+
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(0, 188, 212, 0.1);
+      background: rgba(0,0,0,0.5);
+    }
+    
+    body.light-mode .form-group input, 
+    body.light-mode .form-group textarea,
+    body.light-mode .form-group select {
+        background: #f0f0f0;
+        border-color: #ddd;
+    }
+
+    /* --- UTILS --- */
+    .back-to-top {
+      position: fixed;
+      bottom: 40px;
+      right: 40px;
+      width: 50px;
+      height: 50px;
+      background: var(--bg-card);
+      color: var(--primary);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 900;
+      box-shadow: var(--shadow-card);
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      color: #000;
+      transform: translateY(-5px);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      bottom: 40px;
+      left: 40px;
+      width: 50px;
+      height: 50px;
+      background: var(--bg-card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 900;
+      transition: var(--transition);
+      box-shadow: var(--shadow-card);
+    }
+    
+    body.light-mode .theme-toggle {
+        border-color: rgba(0,0,0,0.1);
+    }
+    
+    .theme-toggle:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 85%;
+        background: rgba(11, 13, 16, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+        gap: 2rem;
+        z-index: 1001;
+      }
+      
+      body.light-mode .nav-links {
+          background: rgba(255, 255, 255, 0.98);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.2rem;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+      
+      section {
+        padding: 5rem 5%;
+      }
+
+      .modal-content {
+        padding: 2rem 1.5rem; 
+      }
+
+      .close-modal {
+        top: 1rem;
+        right: 1rem;
+      }
+      
+      .trust-logos {
+          gap: 1.5rem;
+      }
+      
+      .trust-logos i {
+          font-size: 1.5rem;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav>
-    <div class="logo">
-      <img src="images/logo.png" alt="Vitality Fitness Logo" class="logo-image">
-      <h1 class="logo-title">Vitality Fitness</h1>
-    </div>
 
-    <!-- Hamburger Menu Button -->
-    <button class="hamburger" aria-label="Toggle navigation">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo" onclick="window.scrollTo(0,0)">
+      <i class="fas fa-dumbbell"></i>
+      <span>VITALITY</span>
+    </div>
+    
+    <button class="hamburger" aria-label="Menu">
+      <i class="fas fa-bars"></i>
     </button>
 
     <ul class="nav-links">
@@ -28,388 +1154,658 @@
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#shop">Shop</a></li>
-      <li><a href="#blog">Blog</a></li>
       <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#modal-booking" class="btn-primary modal-trigger" data-modal="modal-booking" style="padding: 0.8rem 2rem; font-size: 0.8rem;">Join Now</a></li>
     </ul>
   </nav>
 
   <!-- Hero Section -->
   <section id="home" class="hero">
-    <div class="video-container">
-      <video autoplay muted loop class="hero-video active" src="videos/gym-hero1.mp4"></video>
-      <video autoplay muted loop class="hero-video" src="videos/gym-hero2.mp4"></video>
-      <video autoplay muted loop class="hero-video" src="videos/gym-hero3.mp4"></video>
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1920&q=80" class="hero-image active" alt="Gym Atmosphere">
+      <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?auto=format&fit=crop&w=1920&q=80" class="hero-image" alt="Weights">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1920&q=80" class="hero-image" alt="Crossfit">
     </div>
-    <div class="overlay"></div>
+    
     <div class="hero-content">
-      <div class="content-box">
-        <h1>Welcome to Vitality Fitness</h1>
-        <p>Your journey to a healthier lifestyle starts here.</p>
-        <a href="#services" class="cta-button">Explore Services</a>
-      </div>
+      <h1>Forged in <span>Sweat</span><br>Sculpted by <span>Discipline</span></h1>
+      <p>Experience elite personal training and state-of-the-art facilities designed to push your limits.</p>
+      <a href="#services" class="btn-primary">Start Your Journey</a>
     </div>
   </section>
+  
+  <!-- Trusted By Banner -->
+  <div class="trust-banner">
+      <p style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem;">Trusted by elite athletes from</p>
+      <div class="trust-logos">
+          <i class="fab fa-apple"></i>
+          <i class="fab fa-strava"></i> <!-- Added -->
+          <i class="fab fa-nike"></i>
+          <i class="fab fa-nutritionix"></i>
+          <i class="fas fa-running"></i>
+          <i class="fab fa-spotify"></i>
+      </div>
+  </div>
 
-  <!-- About Us Section -->
-  <section id="about" class="about">
-    <div class="about-content">
+  <!-- About Section -->
+  <section id="about" class="reveal">
+    <div class="section-header">
       <h2>About Us</h2>
-      <p>
-        At Vitality Fitness Center, we are committed to providing a holistic approach to fitness. Our center is equipped with top-of-the-line equipment and experienced trainers to guide you on your fitness journey. We offer personalized training programs, nutrition guidance, and a supportive community to help you stay motivated and reach your goals.
-      </p>
+      <span></span>
+      <p>More than just a gym. We are a community of discipline.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1593079831268-3381b0db4a77?auto=format&fit=crop&w=800&q=80" alt="Trainer assisting client">
+      </div>
+      <div class="about-text">
+        <h3>We Don't Accept Average</h3>
+        <p>At Vitality Fitness, we believe that the body achieves what the mind believes. Our facility is equipped with top-tier Hammer Strength equipment, Olympic lifting platforms, and a recovery zone that rivals professional athletic centers.</p>
+        <p>Our certified trainers don't just count reps; they analyze your biomechanics, optimize your nutrition, and build a roadmap to your best self.</p>
+        <div style="margin-top: 3rem;">
+          <div style="display: flex; gap: 3rem; margin-bottom: 1rem;">
+            <div>
+              <h4 class="stat-number">24/7</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Access</span>
+            </div>
+            <div>
+              <h4 class="stat-number">50+</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Classes</span>
+            </div>
+            <div>
+              <h4 class="stat-number">15</h4>
+              <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Expert Trainers</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Services Section -->
-  <section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="service-cards">
-      <div class="card">
-        <i class="fas fa-dumbbell"></i>
+  <section id="services" class="reveal">
+    <div class="section-header">
+      <h2>Our Services</h2>
+      <span></span>
+      <p>Comprehensive solutions for every fitness level.</p>
+    </div>
+    <div class="services-grid">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <i class="fas fa-dumbbell service-icon"></i>
         <h3>Personal Training</h3>
-        <p>
-          Achieve your fitness goals with one-on-one sessions tailored to your needs. Our certified trainers will guide you every step of the way.
-        </p>
-        <button class="learn-more-btn" data-modal="personal-training-modal">Learn More</button>
+        <p>1-on-1 coaching tailored to your specific goals, whether it's hypertrophy, weight loss, or athletic performance.</p>
+        <button class="btn-outline modal-trigger" data-modal="modal-pt">Learn More</button>
       </div>
-      <div class="card">
-        <i class="fas fa-heartbeat"></i>
+      <!-- Card 2 -->
+      <div class="service-card">
+        <i class="fas fa-users service-icon"></i>
         <h3>Group Classes</h3>
-        <p>
-          Join our high-energy group fitness classes designed to keep you motivated and engaged. Perfect for all fitness levels.
-        </p>
-        <button class="learn-more-btn" data-modal="group-classes-modal">Learn More</button>
+        <p>High-energy HIIT, Spin, and Yoga classes led by motivators who push you to your absolute limit.</p>
+        <button class="btn-outline modal-trigger" data-modal="modal-group">Learn More</button>
       </div>
-      <div class="card">
-        <i class="fas fa-utensils"></i>
-        <h3>Nutrition Plans</h3>
-        <p>
-          Get personalized nutrition plans to complement your workouts and optimize your results. Fuel your body the right way.
-        </p>
-        <button class="learn-more-btn" data-modal="nutrition-plans-modal">Learn More</button>
+      <!-- Card 3 -->
+      <div class="service-card">
+        <i class="fas fa-apple-alt service-icon"></i>
+        <h3>Nutrition Planning</h3>
+        <p>Fuel your body correctly. We provide macro-calculated meal plans that fit your lifestyle and taste.</p>
+        <button class="btn-outline modal-trigger" data-modal="modal-nutrition">Learn More</button>
+      </div>
+      <!-- Card 4 -->
+      <div class="service-card">
+        <i class="fas fa-snowflake service-icon"></i>
+        <h3>Recovery Zone</h3>
+        <p>State-of-the-art cryotherapy, infrared saunas, and sports massage therapy to accelerate your recovery.</p>
+        <button class="btn-outline modal-trigger" data-modal="modal-recovery">Learn More</button>
       </div>
     </div>
   </section>
 
   <!-- Shop Section -->
-  <section id="shop" class="shop">
-    <h2>Shop</h2>
-    <p>Explore our fitness gear and supplements to enhance your workouts.</p>
-    <div class="product-cards">
+  <section id="shop" class="reveal">
+    <div class="section-header">
+      <h2>Gear Up</h2>
+      <span></span>
+      <p>Premium supplements and equipment to enhance your training.</p>
+    </div>
+    <div class="shop-grid">
+      <!-- Product 1 -->
       <div class="product-card">
-        <img src="images/protein-powder.jpg" alt="Protein Powder" class="product-image">
-        <h3>Protein Powder</h3>
-        <p>High-quality whey protein to support muscle recovery and growth.</p>
-        <p class="price">$29.99</p>
-        <button class="add-to-cart-btn" data-product="protein-powder">Add to Cart</button>
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1593095948071-474c5cc2989d?auto=format&fit=crop&w=600&q=80" alt="Whey Protein">
+        </div>
+        <div class="product-info">
+          <div>
+            <h3>Gold Standard Whey</h3>
+            <span class="product-price">$59.99</span>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">24g of pure protein per serving. Essential for muscle recovery.</p>
+          </div>
+          <button class="btn-outline add-to-cart-btn" data-product="Gold Standard Whey">Add to Cart</button>
+        </div>
       </div>
+      <!-- Product 2 -->
       <div class="product-card">
-        <img src="images/dumbbell-set.jpg" alt="Dumbbell Set" class="product-image">
-        <h3>Dumbbell Set</h3>
-        <p>Adjustable dumbbells for a versatile home workout experience.</p>
-        <p class="price">$49.99</p>
-        <button class="add-to-cart-btn" data-product="dumbbell-set">Add to Cart</button>
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?auto=format&fit=crop&w=600&q=80" alt="Dumbbells">
+        </div>
+        <div class="product-info">
+          <div>
+            <h3>Hex Dumbbell Set</h3>
+            <span class="product-price">$89.99</span>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Rubber coated, ergonomic grip. Perfect for home gyms.</p>
+          </div>
+          <button class="btn-outline add-to-cart-btn" data-product="Hex Dumbbell Set">Add to Cart</button>
+        </div>
       </div>
+      <!-- Product 3 -->
       <div class="product-card">
-        <img src="images/yoga-mat.jpg" alt="Yoga Mat" class="product-image">
-        <h3>Yoga Mat</h3>
-        <p>Eco-friendly and non-slip yoga mat for all your fitness routines.</p>
-        <p class="price">$19.99</p>
-        <button class="add-to-cart-btn" data-product="yoga-mat">Add to Cart</button>
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=600&q=80" alt="Yoga Mat">
+        </div>
+        <div class="product-info">
+          <div>
+            <h3>Pro Yoga Mat</h3>
+            <span class="product-price">$24.99</span>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Non-slip surface with extra cushioning for joint support.</p>
+          </div>
+          <button class="btn-outline add-to-cart-btn" data-product="Pro Yoga Mat">Add to Cart</button>
+        </div>
+      </div>
+      <!-- Product 4 (New) -->
+      <div class="product-card">
+        <div class="product-img-wrapper">
+          <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=600&q=80" alt="Kettlebell">
+        </div>
+        <div class="product-info">
+          <div>
+            <h3>Comp Kettlebell</h3>
+            <span class="product-price">$65.00</span>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Professional grade steel kettlebell for explosive power.</p>
+          </div>
+          <button class="btn-outline add-to-cart-btn" data-product="Competition Kettlebell">Add to Cart</button>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- Blog Section -->
-  <section id="blog" class="blog">
-    <h2>Latest Blog Posts</h2>
-    <div class="blog-posts">
-      <div class="post">
-        <img src="images/blog1.jpg" alt="Blog 1 Placeholder" class="blog-image">
-        <h3>Top 5 Exercises for Beginners</h3>
-        <p>Learn the best exercises to kickstart your fitness journey.</p>
-        <button class="read-more-btn" data-modal="blog1-modal">Read More</button>
+  
+  <!-- FAQ Section -->
+  <section id="faq" class="faq reveal">
+      <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+          <span></span>
       </div>
-      <div class="post">
-        <img src="images/blog2.jpg" alt="Blog 2 Placeholder" class="blog-image">
-        <h3>Nutrition Tips for Muscle Gain</h3>
-        <p>Discover the right diet to fuel your workouts.</p>
-        <button class="read-more-btn" data-modal="blog2-modal">Read More</button>
+      <div class="faq-container">
+          <div class="faq-item">
+              <button class="faq-question">What are your operating hours? <i class="fas fa-chevron-down"></i></button>
+              <div class="faq-answer">
+                  <p>We are open 24/7 for members with keycard access. Staffed hours are from 6:00 AM to 10:00 PM, Monday through Sunday.</p>
+              </div>
+          </div>
+          <div class="faq-item">
+              <button class="faq-question">Do you offer trial memberships? <i class="fas fa-chevron-down"></i></button>
+              <div class="faq-answer">
+                  <p>Yes! We offer a 3-day complimentary pass for local residents. You can book your pass by contacting our team via the 'Join Now' button.</p>
+              </div>
+          </div>
+          <div class="faq-item">
+              <button class="faq-question">Are classes included in the membership? <i class="fas fa-chevron-down"></i></button>
+              <div class="faq-answer">
+                  <p>Our Premium and Elite tier memberships include unlimited access to all group classes. Basic members can purchase class packs separately.</p>
+              </div>
+          </div>
       </div>
-      <div class="post">
-        <img src="images/blog3.jpg" alt="Blog 3 Placeholder" class="blog-image">
-        <h3>How to Stay Motivated in Your Fitness Journey</h3>
-        <p>Tips and tricks to keep yourself motivated and consistent.</p>
-        <button class="read-more-btn" data-modal="blog3-modal">Read More</button>
-      </div>
-    </div>
   </section>
 
-  <!-- Reviews Section -->
-  <section id="reviews" class="reviews">
-    <h2>What Our Clients Say</h2>
+  <!-- Reviews Section (Moved After FAQ) -->
+  <section id="reviews" class="reviews reveal">
+    <div class="section-header">
+      <h2>Success Stories</h2>
+      <span></span>
+    </div>
     <div class="reviews-container">
+      <!-- Review 1 -->
       <div class="review-card active">
-        <h3>John Doe</h3>
-        <p class="client-role">Fitness Enthusiast</p>
-        <p class="client-review">
-          "Vitality Fitness has transformed my life! The trainers are knowledgeable, and the community is incredibly supportive. I've never felt better!"
-        </p>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+        </div>
+        <p class="review-text">"Vitality Fitness isn't just a gym, it's a transformation center. I lost 30lbs in 3 months and have never felt stronger. The trainers are world-class."</p>
+        <div class="reviewer">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="John Doe">
+          <div class="reviewer-info">
+            <h4>John Doe</h4>
+            <span>Member since 2022</span>
+          </div>
         </div>
       </div>
+      <!-- Review 2 -->
       <div class="review-card">
-        <h3>Jane Smith</h3>
-        <p class="client-role">Yoga Lover</p>
-        <p class="client-review">
-          "The group classes are amazing! I love the variety and the energy. Vitality Fitness has become my second home."
-        </p>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star-half-alt"></i>
+        <div class="stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
         </div>
-      </div>
-      <div class="review-card">
-        <h3>Mike Johnson</h3>
-        <p class="client-role">Bodybuilder</p>
-        <p class="client-review">
-          "The nutrition plans are top-notch. Combined with the personal training, I've achieved results I never thought possible!"
-        </p>
-        <div class="rating">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
-          <i class="fas fa-star"></i>
+        <p class="review-text">"The group classes are addictive! The energy is unmatched and the instructors push you past what you thought was possible."</p>
+        <div class="reviewer">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&q=80" alt="Sarah J.">
+          <div class="reviewer-info">
+            <h4>Sarah J.</h4>
+            <span>Yoga Enthusiast</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer id="footer">
+  <footer id="contact">
     <div class="footer-content">
-      <!-- Contact Us Section -->
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <form class="contact-form">
-          <input type="text" placeholder="Name" required>
-          <input type="email" placeholder="Email" required>
-          <textarea placeholder="Message" required></textarea>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <!-- Contact Info Section -->
-      <div class="footer-section">
-        <h3>Contact Info</h3>
-        <div class="contact-info">
-          <p><i class="fas fa-phone"></i> (555) 987-6543</p>
-          <p><i class="fas fa-envelope"></i> VitalityFitness@mysite.com</p>
-          <p><i class="fas fa-map-marker-alt"></i> 789 Wellness Way, Health City</p>
+      <!-- Col 1: Brand -->
+      <div class="footer-col footer-brand">
+        <div class="logo" style="margin-bottom: 1rem;">
+            <i class="fas fa-dumbbell"></i>
+            <span>VITALITY</span>
         </div>
-      </div>
-
-      <!-- Follow Us Section -->
-      <div class="footer-section">
-        <h3>Follow Us</h3>
+        <p>Forging elite fitness through science, discipline, and community. Join us and redefine your limits.</p>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
 
-      <!-- Quick Links Section -->
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul class="quick-links">
+      <!-- Col 2: Explore -->
+      <div class="footer-col">
+        <h3>Explore</h3>
+        <ul class="footer-links">
           <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#shop">Shop</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#services">Our Services</a></li>
+          <li><a href="#shop">Store</a></li>
+          <li><a href="#reviews">Success Stories</a></li>
         </ul>
       </div>
+      
+      <!-- Col 3: Legal/Support -->
+      <div class="footer-col">
+          <h3>Support</h3>
+          <ul class="footer-links">
+              <li><a href="#faq">Help Center</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="modal-legal">Privacy Policy</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="modal-legal">Terms of Service</a></li>
+              <li><a href="#" class="modal-trigger" data-modal="modal-careers">Careers</a></li>
+              <li><a href="#contact">Contact Support</a></li>
+          </ul>
+      </div>
+
+      <!-- Col 4: Newsletter -->
+      <div class="footer-col">
+        <h3>Stay Updated</h3>
+        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.9rem;">Join our newsletter for exclusive tips and offers.</p>
+        <form onsubmit="event.preventDefault(); alert('Subscribed!');" style="display: flex; flex-direction: column; gap: 10px;">
+          <input type="email" placeholder="Your Email" style="padding: 1rem; border-radius: 5px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: #fff; width: 100%;">
+          <button type="submit" style="padding: 1rem; background: var(--primary); border: none; border-radius: 5px; cursor: pointer; font-weight: bold; text-transform: uppercase;">Subscribe</button>
+        </form>
+      </div>
     </div>
-
-    <!-- Footer Bottom -->
+    
     <div class="footer-bottom">
-      <!-- Add the logo here -->
-      <div class="logo">
-        <img src="images/logo.png" alt="Vitality Fitness Logo" class="logo-image">
-        <h1 class="logo-title">Vitality Fitness</h1>
-      </div>
-
-      <div class="footer-links">
-        <a href="privacy-terms.html">Privacy Policy</a> | 
-        <a href="privacy-terms.html">Terms of Service</a>
-      </div>
-      <p>&copy; 2024 Vitality Fitness. All rights reserved.</p>
-      <p class="designed-by">Designed by <a href="https://alectronic-solutions.github.io/" target="_blank">Alectronic Solutions</a>.</p>
+      <p>&copy; 2025 Vitality Fitness. All rights reserved.</p>
+      <p class="designed-by">© 2025 <a href="https://alectronic-solutions.github.io/" target="_blank" style="color: inherit; text-decoration: none;">Alectronic Solutions</a>. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Back to Top Button -->
-  <button id="back-to-top" aria-label="Back to Top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Dark Mode Toggle Button -->
-  <button id="dark-mode-toggle" aria-label="Toggle Dark Mode">
-    <i class="fas fa-sun"></i>
-  </button>
-
   <!-- Modals -->
-  <!-- Service Modals -->
-  <div id="personal-training-modal" class="modal">
+  <!-- Service Modal PT -->
+  <div id="modal-pt" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close-modal">&times;</span>
       <h2>Personal Training</h2>
-      <p>
-        Our <strong>Personal Training</strong> program is designed to help you achieve your fitness goals with a customized approach. Whether you're looking to lose weight, build muscle, or improve overall fitness, our certified trainers will create a plan tailored to your needs.
-      </p>
-      <ul>
-        <li><i class="fas fa-check"></i> One-on-one sessions with expert trainers</li>
-        <li><i class="fas fa-check"></i> Customized workout plans</li>
-        <li><i class="fas fa-check"></i> Progress tracking and adjustments</li>
-        <li><i class="fas fa-check"></i> Flexible scheduling</li>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Unlock your full potential with a dedicated coach.</p>
+      <ul style="color: var(--text-muted); margin-bottom: 2rem; line-height: 2;">
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Custom Hypertrophy Programs</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Biomechanical Analysis</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> 24/7 Support via App</li>
       </ul>
-      <button class="contact-btn">Contact Us</button>
+      <button class="btn-primary book-service-btn" data-service="Personal Training" style="width: 100%;">Book Consultation</button>
     </div>
   </div>
 
-  <div id="group-classes-modal" class="modal">
+  <div id="modal-group" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close-modal">&times;</span>
       <h2>Group Classes</h2>
-      <p>
-        Join our high-energy <strong>Group Classes</strong> and experience the motivation of working out with others. Our classes are designed for all fitness levels and include a variety of workouts to keep you engaged and challenged.
-      </p>
-      <ul>
-        <li><i class="fas fa-check"></i> Yoga, Pilates, and stretching</li>
-        <li><i class="fas fa-check"></i> High-intensity interval training (HIIT)</li>
-        <li><i class="fas fa-check"></i> Spin and cardio classes</li>
-        <li><i class="fas fa-check"></i> Fun and supportive community</li>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Join the tribe.</p>
+      <ul style="color: var(--text-muted); margin-bottom: 2rem; line-height: 2;">
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> HIIT & Tabata</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Spin Cycle</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Power Yoga</li>
       </ul>
-      <button class="contact-btn">Contact Us</button>
+      <button class="btn-primary book-service-btn" data-service="Group Classes" style="width: 100%;">Book Class</button>
     </div>
   </div>
 
-  <div id="nutrition-plans-modal" class="modal">
+  <div id="modal-nutrition" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Nutrition Plans</h2>
-      <p>
-        Our <strong>Nutrition Plans</strong> are designed to complement your fitness journey. Whether you're looking to lose weight, gain muscle, or maintain a healthy lifestyle, our nutrition experts will guide you with personalized meal plans and advice.
-      </p>
-      <ul>
-        <li><i class="fas fa-check"></i> Personalized meal plans</li>
-        <li><i class="fas fa-check"></i> Expert guidance on macronutrients</li>
-        <li><i class="fas fa-check"></i> Weekly check-ins and adjustments</li>
-        <li><i class="fas fa-check"></i> Recipes and grocery lists</li>
+      <span class="close-modal">&times;</span>
+      <h2>Nutrition Planning</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Abs are made in the kitchen.</p>
+      <ul style="color: var(--text-muted); margin-bottom: 2rem; line-height: 2;">
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Macro Calculation</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Meal Prep Guides</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Supplement Stacks</li>
       </ul>
-      <button class="contact-btn">Contact Us</button>
+      <button class="btn-primary book-service-btn" data-service="Nutrition Planning" style="width: 100%;">Get Plan</button>
     </div>
   </div>
 
-  <!-- Blog Modals -->
-  <div id="blog1-modal" class="modal">
+  <div id="modal-recovery" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Top 5 Exercises for Beginners</h2>
-      <p>
-        Starting your fitness journey can be overwhelming, but these <strong>5 beginner-friendly exercises</strong> will help you build strength and confidence:
-      </p>
-      <ul>
-        <li><i class="fas fa-check"></i> Bodyweight Squats</li>
-        <li><i class="fas fa-check"></i> Push-Ups</li>
-        <li><i class="fas fa-check"></i> Planks</li>
-        <li><i class="fas fa-check"></i> Walking Lunges</li>
-        <li><i class="fas fa-check"></i> Dumbbell Rows</li>
+      <span class="close-modal">&times;</span>
+      <h2>Recovery Zone</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Recover smarter, train harder.</p>
+      <ul style="color: var(--text-muted); margin-bottom: 2rem; line-height: 2;">
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Whole Body Cryotherapy</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Infrared Sauna Suites</li>
+        <li><i class="fas fa-check" style="color: var(--primary); margin-right: 10px;"></i> Percussive Therapy</li>
       </ul>
-      <button class="contact-btn">Contact Us</button>
+      <button class="btn-primary book-service-btn" data-service="Recovery Zone" style="width: 100%;">Book Session</button>
     </div>
   </div>
 
-  <div id="blog2-modal" class="modal">
+  <!-- Booking Modal -->
+  <div id="modal-booking" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Nutrition Tips for Muscle Gain</h2>
-      <p>
-        Building muscle requires more than just lifting weights. Here are some <strong>nutrition tips</strong> to help you maximize your gains:
-      </p>
-      <ul>
-        <li><i class="fas fa-check"></i> Eat a calorie surplus</li>
-        <li><i class="fas fa-check"></i> Prioritize protein intake</li>
-        <li><i class="fas fa-check"></i> Include healthy fats</li>
-        <li><i class="fas fa-check"></i> Stay hydrated</li>
-        <li><i class="fas fa-check"></i> Time your meals around workouts</li>
-      </ul>
-      <button class="contact-btn">Contact Us</button>
-    </div>
-  </div>
-
-  <div id="blog3-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>How to Stay Motivated in Your Fitness Journey</h2>
-      <p>
-        Staying motivated can be challenging, but these <strong>tips</strong> will help you stay on track:
-      </p>
-      <ul>
-        <li><i class="fas fa-check"></i> Set realistic goals</li>
-        <li><i class="fas fa-check"></i> Track your progress</li>
-        <li><i class="fas fa-check"></i> Find a workout buddy</li>
-        <li><i class="fas fa-check"></i> Mix up your routine</li>
-        <li><i class="fas fa-check"></i> Reward yourself for milestones</li>
-      </ul>
-      <button class="contact-btn">Contact Us</button>
-    </div>
-  </div>
-
-  <!-- Order Form Modal -->
-  <div id="order-form-modal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Place Your Order</h2>
-      <form id="order-form">
-        <input type="hidden" id="product-id" name="product-id">
+      <span class="close-modal">&times;</span>
+      <h2>Book Your Session</h2>
+      <p style="margin-bottom: 1.5rem;">Step into greatness.</p>
+      <form id="booking-form">
         <div class="form-group">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          <label>Full Name</label>
+          <input type="text" required placeholder="John Doe">
         </div>
         <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          <label>Email Address</label>
+          <input type="email" required placeholder="john@example.com">
         </div>
         <div class="form-group">
-          <label for="quantity">Quantity:</label>
-          <div class="quantity-selector">
-            <button type="button" class="quantity-btn" data-action="decrease">-</button>
-            <input type="number" id="quantity" name="quantity" min="1" value="1" required>
-            <button type="button" class="quantity-btn" data-action="increase">+</button>
-          </div>
+            <label>Service Interest</label>
+            <select id="booking-service-select" required>
+                <option value="Personal Training">Personal Training</option>
+                <option value="Group Classes">Group Classes</option>
+                <option value="Nutrition Planning">Nutrition Planning</option>
+                <option value="Recovery Zone">Recovery Zone</option>
+                <option value="General Inquiry">General Inquiry</option>
+            </select>
         </div>
         <div class="form-group">
-          <label for="address">Shipping Address:</label>
-          <textarea id="address" name="address" placeholder="Enter your shipping address" required></textarea>
+          <label>Preferred Date</label>
+          <input type="date" required>
         </div>
-        <button type="submit" class="submit-order-btn">Place Order</button>
+        <button type="submit" class="btn-primary" style="width: 100%;">Confirm Booking</button>
       </form>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Order Modal -->
+  <div id="order-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal">&times;</span>
+      <h2>Checkout</h2>
+      <p style="margin-bottom: 1.5rem;">Ordering: <span id="modal-product-name" style="color: var(--primary); font-weight: bold;">Product</span></p>
+      <form id="order-form">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" required placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" required placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Shipping Address</label>
+          <textarea required placeholder="123 Fitness St..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Complete Order</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Careers Modal -->
+  <div id="modal-careers" class="modal">
+      <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Join Our Team</h2>
+          <p style="margin-bottom: 1.5rem;">We are always looking for elite talent.</p>
+          <p style="color: var(--text-muted);">Currently looking for:</p>
+          <ul style="color: var(--text-muted); list-style: disc; padding-left: 20px; margin-bottom: 1.5rem;">
+              <li>Senior Personal Trainers</li>
+              <li>Yoga Instructors</li>
+              <li>Front Desk Operations</li>
+          </ul>
+          <button class="btn-primary close-modal-btn">Apply Now</button>
+      </div>
+  </div>
+  
+  <!-- Legal Modal -->
+  <div id="modal-legal" class="modal">
+      <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <h2>Legal Information</h2>
+          <div style="max-height: 300px; overflow-y: auto; margin-top: 1rem; color: var(--text-muted); font-size: 0.9rem;">
+              <h3>Privacy Policy</h3>
+              <p>At Vitality Fitness, we are committed to protecting your privacy. We collect personal information solely for the purpose of providing our services and do not share it with third parties without consent.</p>
+              <br>
+              <h3>Terms of Service</h3>
+              <p>By using our facilities and website, you agree to follow our community guidelines. Memberships are non-transferable. Cancellation requires 30 days notice.</p>
+          </div>
+          <button class="btn-primary close-modal-btn" style="width: 100%; margin-top: 1.5rem;">I Understand</button>
+      </div>
+  </div>
+
+  <!-- UI Controls -->
+  <div class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+  
+  <button class="theme-toggle" aria-label="Toggle Light Mode">
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <script>
+    // --- APP STATE & DOM ELEMENTS ---
+    const nav = document.querySelector('nav');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const backToTop = document.querySelector('.back-to-top');
+    const themeToggle = document.querySelector('.theme-toggle');
+    const modals = document.querySelectorAll('.modal');
+    const orderModal = document.getElementById('order-modal');
+    const bookingModal = document.getElementById('modal-booking');
+    const orderProductName = document.getElementById('modal-product-name');
+    const bookingServiceSelect = document.getElementById('booking-service-select');
+    
+    // --- NAVIGATION LOGIC ---
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      const icon = hamburger.querySelector('i');
+      if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.querySelector('i').classList.remove('fa-times');
+        hamburger.querySelector('i').classList.add('fa-bars');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.style.padding = '0.8rem 5%';
+        backToTop.classList.add('visible');
+      } else {
+        nav.style.padding = '1rem 5%';
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // --- HERO IMAGE ROTATION ---
+    const heroImages = document.querySelectorAll('.hero-image');
+    let currentHero = 0;
+    
+    setInterval(() => {
+      heroImages[currentHero].classList.remove('active');
+      currentHero = (currentHero + 1) % heroImages.length;
+      heroImages[currentHero].classList.add('active');
+    }, 5000);
+
+    // --- REVIEW CAROUSEL ---
+    const reviews = document.querySelectorAll('.review-card');
+    let currentReview = 0;
+
+    setInterval(() => {
+      reviews[currentReview].classList.remove('active');
+      currentReview = (currentReview + 1) % reviews.length;
+      reviews[currentReview].classList.add('active');
+    }, 6000);
+
+    // --- SCROLL REVEAL ANIMATION ---
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealOnScroll = () => {
+        const windowHeight = window.innerHeight;
+        const elementVisible = 150;
+        
+        revealElements.forEach((reveal) => {
+            const elementTop = reveal.getBoundingClientRect().top;
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add("active");
+            }
+        });
+    };
+    
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll(); // Trigger once on load
+
+    // --- FAQ ACCORDION ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            question.classList.toggle('active');
+            
+            if (question.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = 0;
+            }
+        });
+    });
+
+    // --- MODAL SYSTEM ---
+    // Open Service Description Modals & Footer Modals
+    document.querySelectorAll('.modal-trigger').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
+        const modalId = btn.getAttribute('data-modal');
+        const modal = document.getElementById(modalId);
+        if(modal) {
+          modal.classList.add('show');
+          modal.style.display = 'flex';
+        }
+      });
+    });
+    
+    // Logic for "Book Service" buttons inside the service modals
+    document.querySelectorAll('.book-service-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+           // 1. Get the service name
+           const serviceName = btn.getAttribute('data-service');
+           
+           // 2. Find and close the current modal
+           const currentModal = btn.closest('.modal');
+           if(currentModal) {
+               currentModal.classList.remove('show');
+               setTimeout(() => currentModal.style.display = 'none', 300);
+           }
+           
+           // 3. Open the booking modal
+           if(bookingModal) {
+               bookingServiceSelect.value = serviceName; // Pre-select the service
+               bookingModal.classList.add('show');
+               bookingModal.style.display = 'flex';
+           }
+        });
+    });
+
+    // Open Shop Modal
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        orderProductName.textContent = btn.getAttribute('data-product');
+        orderModal.classList.add('show');
+        orderModal.style.display = 'flex';
+      });
+    });
+
+    // Close Modals
+    document.querySelectorAll('.close-modal, .close-modal-btn').forEach(closeBtn => {
+      closeBtn.addEventListener('click', () => {
+        modals.forEach(m => {
+          m.classList.remove('show');
+          setTimeout(() => m.style.display = 'none', 300);
+        });
+      });
+    });
+
+    // Close on Outside Click
+    window.addEventListener('click', (e) => {
+      if (e.target.classList.contains('modal')) {
+        e.target.classList.remove('show');
+        setTimeout(() => e.target.style.display = 'none', 300);
+      }
+    });
+
+    // Order Form Submit
+    document.getElementById('order-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert(`Thank you! Your order for ${orderProductName.textContent} has been placed.`);
+      orderModal.classList.remove('show');
+      setTimeout(() => orderModal.style.display = 'none', 300);
+      e.target.reset();
+    });
+    
+    // Booking Form Submit
+    document.getElementById('booking-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert(`Booking Confirmed! We will contact you shortly to finalize your ${bookingServiceSelect.value} session.`);
+        bookingModal.classList.remove('show');
+        setTimeout(() => bookingModal.style.display = 'none', 300);
+        e.target.reset();
+    });
+
+    // --- THEME TOGGLE ---
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      const icon = themeToggle.querySelector('i');
+      if (document.body.classList.contains('light-mode')) {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      } else {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      }
+    });
+
+  </script>
 </body>
 </html>
